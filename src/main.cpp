@@ -4,13 +4,14 @@
 #include "matplotlibcpp.h"
 
 
+
 namespace plt = matplotlibcpp;
 
 int main(){
     double dt = 0.1;
     double L = 2.0;
-    double v = 2.0;
-    double x_0 = 0.0;
+    double  = 2.0;
+    double x_v0 = 0.0;
     double y_0 = 1.0;
     double psi_0 = 0.0;
 
@@ -48,7 +49,8 @@ int main(){
 
 
      // 传入机器人状态、参考轨迹、min_index, A , B , Q, R     求解得到前轮转角的增量
-        double delta = robot_motion_LQR.lqrControl(robot_state, referencePath.refer_path, s0, state_space[0], state_space[1], Q, R);// 前轮转角
+        double delta = robot_motion_LQR.lqrControl(robot_state, referencePath.refer_path,
+                                                   s0, state_space[0], state_space[1], Q, R);// 前轮转角
         delta += ref_delta;
 
         robot.updateState(0,delta);   // 加速度设为0，恒速
