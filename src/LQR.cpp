@@ -4,14 +4,14 @@
 
     LQRControl::LQRControl(int n):N(n){};
 
-//MatrixXd 是 Eigen 库中的一个模板类，用于创建和操作动态大小的矩阵。
-// 参数 A 和 B 分别代表系统的状态矩阵和控制矩阵。
-// 参数 Q 和 R 分别代表状态权重矩阵和控制权重矩阵。
-// Q矩阵元素变大意味着希望跟踪偏差能够快速趋近于零；
-// R矩阵元素变大意味着希望控制输入能够尽可能小,即消耗的能耗更小
-// 返回值是解得的Riccati矩阵 P
+    //MatrixXd 是 Eigen 库中的一个模板类，用于创建和操作动态大小的矩阵。
+    // 参数 A 和 B 分别代表系统的状态矩阵和控制矩阵。
+    // 参数 Q 和 R 分别代表状态权重矩阵和控制权重矩阵。
+    // Q矩阵元素变大意味着希望跟踪偏差能够快速趋近于零；
+    // R矩阵元素变大意味着希望控制输入能够尽可能小,即消耗的能耗更小
+    // 返回值是解得的Riccati矩阵 P
     MatrixXd LQRControl::calRicatti(MatrixXd A, MatrixXd B, MatrixXd Q, MatrixXd R){
-        MatrixXd Qf = Q;
+        MatrixXd Qf = Q;      // 终端状态权重矩阵
         MatrixXd P_old = Qf;
         MatrixXd P_new;
 
@@ -23,9 +23,11 @@
          P_old= P_new;
     }
 
+    /*
+    矩阵 P 被称为“Cost-to-go”（剩余代价矩阵 ， 它代表的物理意义是：从当前状态开始，一直到控制过程结束，系统未来总共还会产生多少代价
+    */
+
     return P_new;
-
-
 }
 
 

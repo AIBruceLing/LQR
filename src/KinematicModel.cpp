@@ -15,11 +15,11 @@
 
 
 
-/**
- * 控制量为转向角delta_f和加速度a
- * @param accel 加速度
- * @param delta_f 前轮转向角控制量
- */
+    /**
+     * 控制量为转向角delta_f和加速度a
+     * @param accel 加速度
+     * @param delta_f 前轮转向角控制量
+     */
     void KinematicModel::updateState(double accel , double delta_f){
         x = x + v* cos(psi)*dt;
         y = y + v* sin(psi)*dt;
@@ -37,16 +37,17 @@
 
 
 // ********************* 状态空间方程（离散化） 采样周期为0.1s **************************
-// ******************* A , B *********************************
+// *******************离散化误差状态空间方程的雅可比矩阵 A , B *********************************
     vector<MatrixXd> KinematicModel::stateSpace(double ref_delta , double ref_yaw){   
         MatrixXd A(3,3);
         MatrixXd B(3,2);
-    A<<1.0,0.0,-v*dt*sin(ref_yaw),
-        0.0,1.0,v*dt*cos(ref_yaw),
-        0.0,0.0,1.0;
-    B<<dt*cos(ref_yaw),0,
-        dt*sin(ref_yaw),0,
-        dt*tan(ref_delta)/L,v*dt/(L*cos(ref_delta)*cos(ref_delta));
-        return {A,B};
+        A<< 1.0, 0.0, -v*dt*sin(ref_yaw),
+            0.0, 1.0,  v*dt*cos(ref_yaw),
+            0.0, 0.0,  1.0;
 
+        B<< dt*cos(ref_yaw),     0,
+            dt*sin(ref_yaw),     0,
+            dt*tan(ref_delta)/L, v*dt/(L*cos(ref_delta)*cos(ref_delta));
+
+        return {A,B};  // 返回状态空间方程的雅可比矩阵 A , B
     }

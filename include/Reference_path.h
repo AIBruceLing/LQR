@@ -22,9 +22,6 @@ struct parameters
 };
 
 
-
-
-
 class MyReference_path{
     public:
     MyReference_path();

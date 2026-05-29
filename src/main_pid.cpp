@@ -51,8 +51,8 @@ int main(){
         vector<MatrixXd>state_space = robot.stateSpace(ref_delta,ref_yaw);   //{A,B} 矩阵
 
 
-     // 传入机器人状态、参考轨迹、min_index, A , B , Q, R     求解得到前轮转角的增量
-        double delta = robot_motion_LQR.lqrControl(robot_state, referencePath.refer_path, s0, state_space[0], state_space[1], Q, R);// 前轮转角
+        // 传入机器人状态、参考轨迹、min_index, A , B , Q, R     求解得到前轮转角的增量
+        double delta = robot_motion_LQR.lqrControl(robot_state, referencePath.refer_path, s0, state_space[0], state_space[1], Q, R);// 前轮转角增量
         delta += ref_delta;
         
         double a = PID.calOutput(robot.v);

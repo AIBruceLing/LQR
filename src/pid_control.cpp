@@ -44,5 +44,4 @@
 
     void PID_controller::setSumError(double sum_error){
         this->sum_error = sum_error;
-
     }
