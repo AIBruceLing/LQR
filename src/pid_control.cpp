@@ -27,13 +27,13 @@
     }
 
     double PID_controller::calOutput(double state){   // 控制量加速度输出 ， 传入机器人当前速度 ， 输出加速度 （根据当前速度和目标速度的差值）
-    this->error = target - state;
-    double u = error * Kp + sum_error*Ki + (error - pre_error) * Kd;
-    if(u<lower) u = lower;
-    else if(u>upper) u = upper;
-    this->pre_error = this->error;
-    this->sum_error = sum_error + error;
-    return u;
+        this->error = target - state;
+        double u = error * Kp + sum_error*Ki + (error - pre_error) * Kd;
+        if(u<lower) u = lower;
+        else if(u>upper) u = upper;
+        this->pre_error = this->error;
+        this->sum_error = sum_error + error;
+        return u;
     }
 
     void PID_controller::reset(){
