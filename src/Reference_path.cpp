@@ -4,7 +4,7 @@
 
 //************************ 构造函数 ， 求出参考轨迹点上的曲率等信息 ******************************************//
 MyReference_path::MyReference_path(){
-    refer_path = vector<vector<double>> (1000,vector<double>(4));// 1000个点 ， 每个点有x、y、偏航角yaw和曲率（curvature）
+    refer_path = vector<vector<double>>  (1000,vector<double>(4));//双层数组， 1000个点 ， 每个点有x、y、偏航角yaw和曲率（curvature）
 
     //生成参考轨迹
 

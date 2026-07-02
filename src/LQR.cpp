@@ -15,10 +15,11 @@
         MatrixXd P_old = Qf;
         MatrixXd P_new;
 
-        for(int i = 0;i<N;i++){
+        for(int i = 0;i < N;i++){
          P_new = Q + A.transpose() * P_old * A - A.transpose() * P_old * B * (R + B.transpose() * P_old * B).inverse() * B.transpose() * P_old * A;
         //  if((P_new - P_old).cwiseAbs().maxCoeff()<EPS) break;
         if((P_new-P_old).maxCoeff()<EPS&&(P_old-P_new).maxCoeff()<EPS)break;
+        // if ((P_new - P_old).cwiseAbs().maxCoeff() < EPS) break; //cwiseAbs 取矩阵中每个元素的绝对值
 
          P_old= P_new;
     }

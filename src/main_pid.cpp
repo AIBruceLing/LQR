@@ -14,8 +14,8 @@ int main(){
     double x_0 = 0.0;
     double y_0 = 1.0;
     double psi_0 = 0.0;
-    double target_speed = 4.0;
-    double upper_speed = 15.0/3.6;
+    double target_speed = 6.0;
+    double upper_speed = 8.0;
 
     int N = 500;
     MatrixXd Q(3,3);
@@ -24,7 +24,7 @@ int main(){
        0,0,10;
 
     MatrixXd R(2,2);
-    R<<3.0,0.0,
+    R<< 3.0,0.0,
         0.0,3.0;
     
 

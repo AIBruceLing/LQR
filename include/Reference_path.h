@@ -36,20 +36,5 @@ class MyReference_path{
     vector<double> refer_x,refer_y;
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #endif
 

@@ -8,7 +8,7 @@ namespace plt = matplotlibcpp;
 
 int main(){
     double dt = 0.1;     //前向欧拉离散时间步长
-    double L = 2.0;      //车辆长度
+    double L = 2.0;      //车辆轴距
 
 
     //车辆初始状态
@@ -41,12 +41,12 @@ int main(){
     vector<double> robot_state;
 
 
-    for(int i = 0;i<700;i++){
+    for(int i = 0;i < 700;i++){
         plt::clf();
         robot_state = robot.getState();// {x , y , psi , v};
         vector<double>one_trial = referencePath.calcTrackError(robot_state); //{error , k , yaw , min_index}
-        double k = one_trial[1];
-        double ref_yaw = one_trial[2];// 预瞄点曲率
+        double k = one_trial[1];// 预瞄点曲率
+        double ref_yaw = one_trial[2];
         double s0 = one_trial[3];  // min_distance_index
 
         double ref_delta = atan2(L*k,1);  // 求出参考轨迹上的预瞄点的前轮转角
